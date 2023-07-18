@@ -17,7 +17,7 @@ class TestBarcodeData:
         expexted_value_first_barcode = dict_data[r'\nBATCH# : ']
         expexted_value_second_barcode = dict_data[r'\nPN: ']
         assert data['barcodes'][0] == expexted_value_first_barcode, f"Значение штрихкода {data[0]} не соответствует значению из текста: {expexted_value_first_barcode}"
-        assert data['barcodes'][1] == expexted_value_second_barcode, f"Значение штрихкода {data[0]} не соответствует значению из текста: {expexted_value_second_barcode}"
+        assert data['barcodes'][1] == expexted_value_second_barcode, f"Значение штрихкода {data[1]} не соответствует значению из текста: {expexted_value_second_barcode}"
 
 
 # БАРКОДЫ: ['1', 'tst']}
