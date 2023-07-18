@@ -1,9 +1,12 @@
 import cv2
 import os
-import PyPDF2
+import pypdf
 from pdf2image import convert_from_path
 from pyzbar import pyzbar
 
+
+dirname = os.path.dirname(__file__)
+pdf_file_path = "test_task.pdf"
 
 def save_image(image, image_path):
     try:
@@ -21,10 +24,11 @@ def convert_pdf_to_jpg(pdf_file_path, dirname):
 
 def extract_text_from_pdf(pdf_file_path):
     with open(pdf_file_path, "rb") as file:
-        pdf_reader = PyPDF2.PdfReader(file)
+        pdf_reader = pypdf.PdfReader(file)
         text = ""
         for page in pdf_reader.pages:
             text += page.extract_text()
+        text = text.replace("\n", r"\n")
         return text
 
 
@@ -55,8 +59,11 @@ def extract_data_from_pdf(pdf_file_path, dirname):
     return data
 
 
-if __name__ == "__main__":
-    dirname = os.path.dirname(__file__)
-    pdf_file_path = "test_task.pdf"
+def main():
     extracted_data = extract_data_from_pdf(pdf_file_path, dirname)
-    print(extracted_data)
+    print(f"Данные из pdf: {extracted_data}")
+    return extracted_data
+
+
+if __name__ == "__main__":
+    extracted_data = main()
